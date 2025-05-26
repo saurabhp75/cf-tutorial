@@ -25,10 +25,11 @@ router.get('/images', getImages)
 
 export interface Env {
 	// MY_KV_NAMESPACE: KVNamespace;
+	DB: D1Database;
 }
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return router.fetch(request);
+	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+		return router.fetch(request, env);
 	},
 } satisfies ExportedHandler<Env>;
